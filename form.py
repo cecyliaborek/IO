@@ -11,4 +11,7 @@ def display_form():
 def get_results():
     query = request.args
     print(query)
+
+    #tutaj wywołuję funkcję Benka i przekazuje jej wynik do html jako results
+
     return render_template('result.html', results = products)
