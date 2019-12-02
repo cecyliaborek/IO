@@ -27,7 +27,8 @@ class Obj_list:  # lista obiektow danego rodzaju
     def __init__(self):
         self.lista = []
 
-    def create_obj(self, name, price: int, price_ship: int=0, rate: int=0, rate_num: int=0):  # funkcja do dodawania obiektów recznie
+    def create_obj(self, name, price: int, price_ship: int = 0, rate: int = 0,
+                   rate_num: int = 0):  # funkcja do dodawania obiektów recznie
         self.lista.append(Object(name, price, price_ship, rate, rate_num))
 
     def add_obj(self, obj: Object):  # funkcja do dodawania obiektow przyjmujaca dane typu Object
@@ -71,14 +72,15 @@ class List:  # lista wszystkich przedmiotow (lista list zwierajacych przedmioty)
             i.lista.sort(key=lambda x: x.price)
             i.sum_price('diff')  # cofniecie dodania cen dostawy do cen produktu
 
+
 class SearchedObject:
-    def __init__(self,name:str, price_max:float,price_min:float=0, amount:int=1):
+    def __init__(self, name: str, price_max: float, price_min: float = 0, amount: int = 1):
         self.name = name
         self.pricemax = price_max
         self.pricemin = price_min
         self.amount = amount
 
-class ListOfSearched:
-    def __init__(self,list_of_objects:list):
-        self.ListOS = list_of_objects
 
+class ListOfSearched:
+    def __init__(self, list_of_objects: list):
+        self.ListOS = list_of_objects
