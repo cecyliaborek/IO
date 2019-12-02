@@ -1,11 +1,13 @@
 class Object:
     # konstruktor obiektu przechowujacego dane przedmiotu
-    def __init__(self, name, price, price_ship=0, rate=0, rate_num=0):
+    def __init__(self, name: str, price: float, price_ship: float = 0, rate: float = 0, rate_num: float = 0,
+                 amount: int = 1):
         self.name = name  # nzwa produktu
         self.price = price  # cena bez dostawy
         self.price_ship = price_ship  # cena dostawy
         self.rate = rate  # format  to int gdzie wartosc jest z zakresu 0-100(%) - 4 = 80(%)
         self.rate_num = rate_num  # ilosc opinii
+        self.amount = amount
 
     def set_price_ship(self, price: int):
         self.price_ship = price
@@ -18,9 +20,10 @@ class Object:
 
     def sum_price(self, oper):
         if oper == 'sum':
-            self.price += self.price_ship
+            self.price = self.price * self.amount + self.price_ship
         else:
             self.price -= self.price_ship
+            self.price = self.price / self.amount
 
 
 class Obj_list:  # lista obiektow danego rodzaju
@@ -36,7 +39,7 @@ class Obj_list:  # lista obiektow danego rodzaju
 
     def filter(self):
         for obj in self.lista:
-            if obj.check_rate == True:
+            if obj.check_rate() and:
                 continue
             else:
                 self.lista.remove(obj)
@@ -70,7 +73,7 @@ class List:  # lista wszystkich przedmiotow (lista list zwierajacych przedmioty)
         for i in self.lista:
             i.sum_price('sum')  # dodanie cen dostawy do ceny produktu
             i.lista.sort(key=lambda x: x.price)
-            i.sum_price('diff')  # cofniecie dodania cen dostawy do cen produktu
+            i.sum_price('rev')  # cofniecie dodania cen dostawy do cen produktu
 
 
 class SearchedObject:
@@ -96,6 +99,8 @@ class FoundItem:
 class FoundSets:
     def __init__(self):
         self.list = [[], [], []]
+        self.price = [0, 0, 0]
 
-    def add_to_list(self, list_nr: int, obj: FoundItem):
+    def add_to_list(self, list_nr: int, obj: FoundItem, price_change_summary: float):
         self.list[list_nr].append(obj)
+        self.list[list_nr] += price_change_summary
