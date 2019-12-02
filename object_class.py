@@ -1,3 +1,11 @@
+class SearchedObject:
+    def __init__(self, name: str, price_max: float, price_min: float = 0, amount: int = 1):
+        self.name = name
+        self.pricemax = price_max
+        self.pricemin = price_min
+        self.amount = amount
+
+
 class Object:
     # konstruktor obiektu przechowujacego dane przedmiotu
     def __init__(self, name: str, price: float, price_ship: float = 0, rate: float = 0, rate_num: float = 0,
@@ -12,8 +20,8 @@ class Object:
     def set_price_ship(self, price: int):
         self.price_ship = price
 
-    def check_rate(self):  # funkcja sprawdzajaca wymagania co do reputacji
-        if self.rate < 79 or self.rate_num > 49:  # ocena 4+ i min 50 ocen
+    def check_req(self, ref_obj: SearchedObject):  # funkcja sprawdzajaca wymagania co do reputacji
+        if self.rate < 79 or self.rate_num > 49 or self.price > ref_obj.pricemax or self.price < ref_obj.pricemin:  # ocena 4+ i min 50 ocen
             return False
         else:
             return True
@@ -29,6 +37,10 @@ class Object:
 class Obj_list:  # lista obiektow danego rodzaju
     def __init__(self):
         self.lista = []
+        self.reference = None
+
+    def set_reference(self, ref_obj: SearchedObject):
+        self.reference = ref_obj
 
     def create_obj(self, name, price: int, price_ship: int = 0, rate: int = 0,
                    rate_num: int = 0):  # funkcja do dodawania obiektów recznie
@@ -39,7 +51,7 @@ class Obj_list:  # lista obiektow danego rodzaju
 
     def filter(self):
         for obj in self.lista:
-            if obj.check_rate() and:
+            if obj.check_req(self.reference):
                 continue
             else:
                 self.lista.remove(obj)
@@ -65,23 +77,17 @@ class List:  # lista wszystkich przedmiotow (lista list zwierajacych przedmioty)
     def add_obj(self, list_nr: int, obj: Object):  # dodawanie do istniejacej listy nowych obiektow
         self.lista[list_nr].add_obj(obj)
 
-    def filter(self):
+    def filter(self):  # for testing
         for l in self.lista:
             l.filter()
+
 
     def sort_list(self):
         for i in self.lista:
             i.sum_price('sum')  # dodanie cen dostawy do ceny produktu
+            i.filter()
             i.lista.sort(key=lambda x: x.price)
             i.sum_price('rev')  # cofniecie dodania cen dostawy do cen produktu
-
-
-class SearchedObject:
-    def __init__(self, name: str, price_max: float, price_min: float = 0, amount: int = 1):
-        self.name = name
-        self.pricemax = price_max
-        self.pricemin = price_min
-        self.amount = amount
 
 
 class ListOfSearched:
