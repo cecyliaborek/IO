@@ -72,10 +72,11 @@ class List:  # lista wszystkich przedmiotow (lista list zwierajacych przedmioty)
             i.sum_price('diff')  # cofniecie dodania cen dostawy do cen produktu
 
 class SearchedObject:
-    def __init__(self,name:str, price_max:float,price_min:float=0):
+    def __init__(self,name:str, price_max:float,price_min:float=0, amount:int=1):
         self.name = name
         self.pricemax = price_max
         self.pricemin = price_min
+        self.amount = amount
 
 class ListOfSearched:
     def __init__(self,list_of_objects:list):
