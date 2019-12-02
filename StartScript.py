@@ -5,3 +5,4 @@ def StartScript(List_of_searched:object_class.ListOfSearched):
     #Lof = funkcja_michała() # List of found - acronym
     #Lof.filter()
     #Lof.sort_list()
+    pass
