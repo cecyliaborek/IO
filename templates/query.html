@@ -43,17 +43,17 @@
             <h2>Pierszy produkt (wymagany)</h2>
             <div class="form-group">
                 <label>Nazwa Produktu</label>
-                <input type="text" class="form-control" placeholder="Produkt" required>
+                <input type="text" class="form-control" name="product1" placeholder="Produkt" required>
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" onkeydown="return event.keyCode !== 69" value="1" step="1" class="form-control">
+                <input type="number" name="amount1" onkeydown="return event.keyCode !== 69" value="1" step="1" class="form-control">
             </div>
             <div data-role="rangeslider">
-                <label for="price-min">Zakres cen:</label>
-                <input type="range" name="price-min" id="price-min" value="200" min="0" max="10000">
-                <label for="price-max">Zakres cen:</label>
-                <input type="range" name="price-max" id="price-max" value="800" min="0" max="10000">
+                <label>Zakres cen:</label>
+                <input type="range" name="price-min1" value="200" min="0" max="10000">
+                <label>Zakres cen:</label>
+                <input type="range" name="price-max1" value="800" min="0" max="10000">
             </div>
         </div>
         <br>
@@ -61,17 +61,17 @@
             <h2>Drugi produkt (opcjonalnie)</h2>
             <div class="form-group">
                 <label>Nazwa Produktu</label>
-                <input type="text" class="form-control" placeholder="Produkt">
+                <input type="text" name="product2" class="form-control" placeholder="Produkt">
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość">
+                <input type="number" name="amount2" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość">
             </div>
             <div data-role="rangeslider">
                 <label for="price-min">Zakres cen:</label>
-                <input type="range" name="price-min" id="price-min" value="200" min="0" max="10000">
+                <input type="range" name="price-min2" id="price-min" value="200" min="0" max="10000">
                 <label for="price-max">Zakres cen:</label>
-                <input type="range" name="price-max" id="price-max" value="800" min="0" max="10000">
+                <input type="range" name="price-max2" id="price-max" value="800" min="0" max="10000">
             </div>
         </div>
         <br>
@@ -79,17 +79,17 @@
             <h2>Trzeci produkt (opcjonalnie)</h2>
             <div class="form-group">
                 <label>Nazwa Produktu</label>
-                <input type="text" class="form-control" placeholder="Produkt">
+                <input type="text" name="product3" class="form-control" placeholder="Produkt">
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość">
+                <input type="number" name="amount3" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość">
             </div>
             <div data-role="rangeslider">
                 <label for="price-min">Zakres cen:</label>
-                <input type="range" name="price-min" id="price-min" value="200" min="0" max="10000">
+                <input type="range" name="price-min3" id="price-min" value="200" min="0" max="10000">
                 <label for="price-max">Zakres cen:</label>
-                <input type="range" name="price-max" id="price-max" value="800" min="0" max="10000">
+                <input type="range" name="price-max3" id="price-max" value="800" min="0" max="10000">
             </div>
         </div>
         <br>
@@ -97,17 +97,17 @@
             <h2>Czwarty produkt (opcjonalnie)</h2>
             <div class="form-group">
                 <label>Nazwa Produktu</label>
-                <input type="text" class="form-control" placeholder="Produkt">
+                <input type="text" name="product4" class="form-control" placeholder="Produkt">
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość">
+                <input type="number" name="amount4" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość">
             </div>
             <div data-role="rangeslider">
                 <label for="price-min">Zakres cen:</label>
-                <input type="range" name="price-min" id="price-min" value="200" min="0" max="10000">
+                <input type="range" name="price-min4" id="price-min" value="200" min="0" max="10000">
                 <label for="price-max">Zakres cen:</label>
-                <input type="range" name="price-max" id="price-max" value="800" min="0" max="10000">
+                <input type="range" name="price-max4" id="price-max" value="800" min="0" max="10000">
             </div>
         </div>
         <br>
@@ -115,17 +115,17 @@
             <h2>Piąty produkt (opcjonalnie)</h2>
             <div class="form-group">
                 <label>Nazwa Produktu</label>
-                <input type="text" class="form-control" placeholder="Produkt">
+                <input type="text" name="product5" class="form-control" placeholder="Produkt">
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość" />
+                <input type="number" name="amount5" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość" />
             </div>
             <div data-role="rangeslider">
                 <label for="price-min">Zakres cen:</label>
-                <input type="range" name="price-min" id="price-min" value="200" min="0" max="10000">
+                <input type="range" name="price-min5" id="price-min" value="200" min="0" max="10000">
                 <label for="price-max">Zakres cen:</label>
-                <input type="range" name="price-max" id="price-max" value="800" min="0" max="10000">
+                <input type="range" name="price-max5" id="price-max" value="800" min="0" max="10000">
             </div>
         </div>
         <br>
