@@ -84,3 +84,18 @@ class SearchedObject:
 class ListOfSearched:
     def __init__(self, list_of_objects: list):
         self.ListOS = list_of_objects
+
+
+class FoundItem:
+    def __init__(self, name: str, price_with_shipp: float, rate: float):
+        self.name = name
+        self.price = price_with_shipp
+        self.rate = rate
+
+
+class FoundSets:
+    def __init__(self):
+        self.list = [[], [], []]
+
+    def add_to_list(self, list_nr: int, obj: FoundItem):
+        self.list[list_nr].append(obj)
