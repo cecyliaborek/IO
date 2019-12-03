@@ -1,10 +1,7 @@
-import object_class
+import object_class, scraper
 
 def StartScript(List_of_searched:object_class.ListOfSearched):
-    #tu funkcja od michała prawdopodobie
-    #Lof = funkcja_michała() # List of found - acronym
-    #Lof.sort_list()
-    Lof = object_class.List()
+    Lof = scraplist(List_of_searched.ListOS)
     FoundSets = object_class.FoundSets()
     for i in Lof.lista:
         if len(i) < 3:
@@ -18,8 +15,22 @@ def StartScript(List_of_searched:object_class.ListOfSearched):
             FoundSets.add_to_list(k, founditem, founditem.price)
 
     for l in FoundSets.list:  # removal of unfilled lists
-        if len(l) < 5:
+        if len(l) < len(List_of_searched.ListOS):
             FoundSets.list.remove(l)
 
     return FoundSets
     pass
+
+
+def scraplist(list_of_searched):
+    foundlist = object_class.List(len(list_of_searched))
+    for item in list_of_searched:
+        scrap = scraper.Scraper(item.name)
+        scrap.run()
+        foundobjlist = object_class.Obj_list()
+        for found in scrap.products_list:
+            if not found['delivery_cost'] == None:
+                foundobjlist.create_obj(found['name'], found['price'], min(found['delivery_cost']), found['rate'],
+                                        found['rate_number'])
+        foundlist.set_objlist(list_of_searched.ListOS.index(item), foundobjlist)
+    return foundlist
