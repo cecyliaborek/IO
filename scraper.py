@@ -9,10 +9,10 @@ class Scraper:
     Metoda run() wlacza Scraper
     Atrybut products_list po wykonaniu wyszukiwania jest lista znalezionych produktow wraz z informacjami o nich
     Struktura:
-    lista list ze slownikami w srodku
-    [ product1_list, product2_list, ... productX_list]
-    gdzie product1_list ... productX_list to
-    [{'name': qqq}, {'price': www}, {'rate':eee}, {'rate_number': rrr}, {'url': ttt}, {'delivery_cost': yyy}]
+    lista slownikow w srodku
+    [ product1_dictionary, product2_dictionary, ... productX_dictionary]
+    gdzie product1_dictionary ... productX_dictionary to
+    {'name': qqq, 'price': www, 'rate':eee, 'rate_number': rrr, 'url': ttt, 'delivery_cost': yyy}
 
     qqq -> <class 'str'>    nazwa produktu w serwisie
     www -> <class 'float'>  cena produktu w serwisie
@@ -51,7 +51,7 @@ class Scraper:
             self.get_html(links)
             soup = BeautifulSoup(self.source, 'lxml')
             for offer in soup.find_all('a', class_="offer-row-item"):
-                product_list = []
+                product_list = {}
                 self.scrap_product_name(offer, product_list)
                 self.scrap_product_price(offer, product_list)
                 self.scrap_product_rate(offer, product_list)
@@ -62,33 +62,33 @@ class Scraper:
 
     def scrap_product_name(self, offer, product_list):
         name = offer.find('span', class_='description gtm_or_name')
-        product_list.append({'name': " ".join((name.text.replace('\n', '')).split())})
+        product_list['name'] = " ".join((name.text.replace('\n', '')).split())
 
     def scrap_product_price(self, offer, product_list):
         price = offer.find('span', class_='price gtm_or_price')
-        product_list.append({'price': float(price.text.replace(' ', '').replace('zł', '').replace(',', '.'))})
+        product_list['price'] = float(price.text.replace(' ', '').replace('zł', '').replace(',', '.'))
 
     def scrap_product_rate(self, offer, product_list):
         rate = offer.find('div', attrs='data-decription', class_='shop-rating gtm_stars')
         if rate is not None:
-            product_list.append({'rate': (eval(rate.get('data-description')))['avg']})
+            product_list['rate'] = (eval(rate.get('data-description')))['avg']
         else:
-            product_list.append({'rate': 0})
+            product_list['rate'] = 0
 
     def scrap_product_rate_number(self, offer, product_list):
         rate_number = offer.find('span', attrs='data-label', class_='counter')
         if rate_number is not None:
-            product_list.append({'rate_number': int(rate_number.text)})
+            product_list ['rate_number'] = int(rate_number.text)
         else:
-            product_list.append({'rate_number': 0})
+            product_list['rate_number'] = 0
 
     def scrap_product_shop_link(self, offer, product_list):
-        product_list.append({'url': 'https://www.skapiec.pl' + offer.get('href')})
+        product_list['url'] = 'https://www.skapiec.pl' + offer.get('href')
 
     def scrap_if_delivery_cost(self, offer, product_list):
         if_delivery_cost = offer.find(class_='delivery-cost')
         if if_delivery_cost.get('href') is None:
-            product_list.append({'delivery_cost': [0]})
+            product_list['deliver_cost'] = [0]
         else:
             self.scrap_delivery_cost(if_delivery_cost, product_list)
 
@@ -99,11 +99,11 @@ class Scraper:
             soup_delivery = BeautifulSoup(self.source, 'lxml')
             costs = self.scrap_html_table(soup_delivery)
             if len(costs) != 0:
-                product_list.append({'delivery_cost': costs})
+                product_list['deliver_cost'] = costs
             else:
-                product_list.append({'delivery_cost': None})
+                product_list['deliver_cost'] = None
         else:
-            product_list.append({'delivery_cost': None})
+            product_list['deliver_cost'] = None
 
     def scrap_html_table(self, soup):
         product_delivery_cost = []
