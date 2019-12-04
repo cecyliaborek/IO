@@ -12,7 +12,7 @@ class Scraper:
     lista slownikow w srodku
     [ product1_dictionary, product2_dictionary, ... productX_dictionary]
     gdzie product1_dictionary ... productX_dictionary to
-    {'name': qqq, 'price': www, 'rate':eee, 'rate_number': rrr, 'url': ttt, 'delivery_cost': yyy}
+    {'name': qqq, 'price': www, 'rate':eee, 'rate_number': rrr, 'url': ttt, 'deliver_cost': yyy}
 
     qqq -> <class 'str'>    nazwa produktu w serwisie
     www -> <class 'float'>  cena produktu w serwisie
@@ -42,6 +42,9 @@ class Scraper:
         for links in soup.find_all('a', attrs="hfref", class_='compare-link-1'):
             self.link.append('https://www.skapiec.pl' + links.get('href'))
             #break
+        if len(self.link) == 0:
+            self.link.append(self.url)
+
 
     def get_html(self, url):
         self.source = requests.get(url).text
