@@ -40,4 +40,4 @@ def get_results():
 
     FoundSets = StartScript.StartScript(searched_objects)
 
-    return render_template('result.html', results = FoundSets)
+    return render_template('result.html', results=FoundSets)
