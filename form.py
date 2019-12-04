@@ -3,7 +3,7 @@ from object_class import SearchedObject, ListOfSearched
 import StartScript
 
 app = Flask(__name__)
-products = [[{'name': 'telefon', 'price': '20', 'link': 'https://www.google.com'}, {'name': 'telefon1', 'price': '201', 'link': 'https://www.google.com'}, {'name': 'telefon', 'price': '20', 'link': 'https://www.google.com'}, {'name': 'telefon', 'price': '20', 'link': 'https://www.google.com'}, {'name': 'telefon', 'price': '20', 'link': 'https://www.google.com'}], [{'name': 'telefon2', 'price': '202', 'link': 'https://www.google.com'}, {'name': 'telefon3', 'price': '203', 'link': 'https://www.google.com'}]]
+#products = [[{'name': 'telefon', 'price': '20', 'link': 'https://www.google.com'}, {'name': 'telefon1', 'price': '201', 'link': 'https://www.google.com'}, {'name': 'telefon', 'price': '20', 'link': 'https://www.google.com'}, {'name': 'telefon', 'price': '20', 'link': 'https://www.google.com'}, {'name': 'telefon', 'price': '20', 'link': 'https://www.google.com'}], [{'name': 'telefon2', 'price': '202', 'link': 'https://www.google.com'}, {'name': 'telefon3', 'price': '203', 'link': 'https://www.google.com'}]]
 
 @app.route('/')
 def display_form():
