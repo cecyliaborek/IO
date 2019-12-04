@@ -32,5 +32,5 @@ def scraplist(list_of_searched):
             if not found["deliver_cost"] == None:
                 foundobjlist.create_obj(found["name"], found["price"], min(found["deliver_cost"]), found["rate"],
                                         found["rate_number"])
-        foundlist.set_objlist(list_of_searched.ListOS.index(item), foundobjlist)
+        foundlist.set_objlist(list_of_searched.index(item), foundobjlist)
     return foundlist
