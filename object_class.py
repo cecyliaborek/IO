@@ -9,13 +9,14 @@ class SearchedObject:
 class Object:
     # konstruktor obiektu przechowujacego dane przedmiotu
     def __init__(self, name: str, price: float, price_ship: float = 0, rate: float = 0, rate_num: float = 0,
-                 amount: int = 1):
+                 amount: int = 1, url: str = ''):
         self.name = name  # nzwa produktu
         self.price = price  # cena bez dostawy
         self.price_ship = price_ship  # cena dostawy
         self.rate = rate  # format  to int gdzie wartosc jest z zakresu 0-100(%) - 4 = 80(%)
         self.rate_num = rate_num  # ilosc opinii
         self.amount = amount
+        self.url = url
 
     def set_price_ship(self, price: int):
         self.price_ship = price
@@ -43,8 +44,8 @@ class Obj_list:  # lista obiektow danego rodzaju
         self.reference = ref_obj
 
     def create_obj(self, name, price: int, price_ship: int = 0, rate: int = 0,
-                   rate_num: int = 0):  # funkcja do dodawania obiektów recznie
-        self.lista.append(Object(name, price, price_ship, rate, rate_num))
+                   rate_num: int = 0, amount: int = 1, url: str = ''):  # funkcja do dodawania obiektów recznie
+        self.lista.append(Object(name, price, price_ship, rate, rate_num, amount, url))
 
     def add_obj(self, obj: Object):  # funkcja do dodawania obiektow przyjmujaca dane typu Object
         self.lista.append(obj)
@@ -86,7 +87,7 @@ class List:  # lista wszystkich przedmiotow (lista list zwierajacych przedmioty)
         for i in self.lista:
             i.sum_price('sum')  # dodanie cen dostawy do ceny produktu
             i.filter()
-            i.lista.sort(key=lambda x: x.price)
+            i.lista.sort(key=lambda x: x.price)  # pytanie czy to ma tak być
             i.sum_price('rev')  # cofniecie dodania cen dostawy do cen produktu
 
 
@@ -96,10 +97,12 @@ class ListOfSearched:
 
 
 class FoundItem:
-    def __init__(self, name: str, price_with_shipp: float, rate: float):
+    def __init__(self, name: str, price_with_shipp: float, rate: float, url: str, is_found: bool):
         self.name = name
         self.price = price_with_shipp
         self.rate = rate
+        self.url = url
+        self.is_found = is_found
 
 
 class FoundSets:
@@ -109,4 +112,4 @@ class FoundSets:
 
     def add_to_list(self, list_nr: int, obj: FoundItem, price_change_summary: float):
         self.list[list_nr].append(obj)
-        self.list[list_nr] += price_change_summary
+        self.price[list_nr] += price_change_summary

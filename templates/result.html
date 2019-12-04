@@ -31,7 +31,7 @@
     </nav>
     {% for option in results %}
     <div class="container">
-        <h2>Opcja</h2>
+        <h2>Opcja {{loop.index}}</h2>
         <div class="row">
             {% for product in option %}
             <div class="col-sm-3">
@@ -42,7 +42,12 @@
                 </ul>
             </div>
             {% endfor %}
+            <div class="col-sm-3">
+                Cena zestawu:
+                {{ price_list[loop.index0] }} PLN
+            </div>
         </div>
+
     </div>
     {% endfor %}
 </body>
