@@ -29,8 +29,8 @@ def scraplist(list_of_searched):
         scrap.run()
         foundobjlist = object_class.Obj_list()
         for found in scrap.products_list:
-            if not found["delivery_cost"] == None:
-                foundobjlist.create_obj(found["name"], found["price"], min(found["delivery_cost"]), found["rate"],
+            if not found["deliver_cost"] == None:
+                foundobjlist.create_obj(found["name"], found["price"], min(found["deliver_cost"]), found["rate"],
                                         found["rate_number"])
         foundlist.set_objlist(list_of_searched.ListOS.index(item), foundobjlist)
     return foundlist
