@@ -86,7 +86,7 @@ class List:  # lista wszystkich przedmiotow (lista list zwierajacych przedmioty)
         for i in self.lista:
             i.sum_price('sum')  # dodanie cen dostawy do ceny produktu
             i.filter()
-            i.lista.sort(key=lambda x: x.price)
+            i.lista.sort(key=lambda x: x.price)  # pytanie czy to ma tak być
             i.sum_price('rev')  # cofniecie dodania cen dostawy do cen produktu
 
 
