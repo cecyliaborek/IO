@@ -5,7 +5,7 @@ def StartScript(List_of_searched:object_class.ListOfSearched):
     FoundSets = object_class.FoundSets()
     for i in Lof.lista:
         if len(i.lista) < 3:
-            limit = len(i)
+            limit = len(i.lista)
         else:
             limit = 3
 
