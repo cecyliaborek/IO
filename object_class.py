@@ -109,4 +109,4 @@ class FoundSets:
 
     def add_to_list(self, list_nr: int, obj: FoundItem, price_change_summary: float):
         self.list[list_nr].append(obj)
-        self.list[list_nr] += price_change_summary
+        self.price[list_nr] += price_change_summary
