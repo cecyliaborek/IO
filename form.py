@@ -38,6 +38,6 @@ def get_results():
 
     searched_objects = ListOfSearched(searched_products)
 
-    StartScript.StartScript(searched_objects)
+    FoundSets = StartScript.StartScript(searched_objects)
 
     return render_template('result.html', results = FoundSets)
