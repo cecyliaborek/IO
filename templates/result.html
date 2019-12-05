@@ -12,19 +12,30 @@
     <!-- Material Design Bootstrap -->
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet"> -->
     <style>
-        /* .container-fluid {
-            margin: 60px !important;
-        } */
         .option {
-            margin-bottom: 4em;
+            margin-bottom: 2em;
+            margin-top: 2em;
+            padding-bottom: 2em;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #555;
         }
 
-        .col {
-            margin: 0;
+        .col-sm-2 div {
+            margin-bottom: 1em;
         }
 
-        .row {
-            margin: 0;
+        .notFound {
+            line-height: 4em;
+            color: #555;
+            font-style: italic;
+        }
+
+        .setPrice{
+            font-size: 140%;
+        }
+        .option h2 {
+            padding-bottom: 0.5em;
         }
     </style>
 </head>
@@ -39,18 +50,22 @@
             <h2>Opcja {{loop.index}}</h2>
             <div class="row">
                 {% for product in option %}
+
                 <div class="col-sm-2">
-                    <ul><a href="{{product.link}}">{{ product.name}}</a></ul>
-                    <ul>{{ product.price}} PLN</ul>
+                    {% if product.is_found == true %}
+                    <div><a href="{{product.link}}">{{ product.name}}</a></div>
+                    <div>{{ product.price}} PLN</div>
+                    {% else %}
+                    <div class="notFound">Produkt nie znaleziony</div>
+                    {% endif%}
                 </div>
                 {% endfor %}
 
 
             </div>
-            <div class="row">
-                <strong>Cena zestawu:
-                    {{ price_list[loop.index0] }} PLN
-                </strong>
+            <div class="row, setPrice">
+                Cena zestawu:
+                {{ price_list[loop.index0] }} PLN
             </div>
         </div>
         {% endfor %}

@@ -19,7 +19,7 @@ def mock_result():
     foundSets.add_to_list(0, FoundItem("Test1", 10.01, 2.03, "urrrllll", True), 1)
     foundSets.add_to_list(0, FoundItem("Test1", 10.01, 2.03, "urrrllll", True), 1)
     foundSets.add_to_list(0, FoundItem("Test1", 10.01, 2.03, "urrrllll", True), 1)
-    foundSets.add_to_list(1, FoundItem("Test2", 101.01, 22.03, "urrrllfdsdfsll", True), 2)
+    foundSets.add_to_list(1, FoundItem("Test2", 101.01, 22.03, "urrrllfdsdfsll", False), 2)
     foundSets.add_to_list(1, FoundItem("Test2", 101.01, 22.03, "urrrllfdsdfsll", True), 2)
     foundSets.add_to_list(1, FoundItem("Test2", 101.01, 22.03, "urrrllfdsdfsll", True), 2)
     foundSets.add_to_list(1, FoundItem("Test2", 101.01, 22.03, "urrrllfdsdfsll", True), 2)
