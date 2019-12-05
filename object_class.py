@@ -22,7 +22,7 @@ class Object:
         self.price_ship = price
 
     def check_req(self, ref_obj: SearchedObject):  # funkcja sprawdzajaca wymagania co do reputacji
-        if self.rate < 79 or self.rate_num > 49 or self.price > ref_obj.pricemax or self.price < ref_obj.pricemin:  # ocena 4+ i min 50 ocen
+        if self.rate > 79 and self.rate_num > 49 and self.price <= ref_obj.pricemax and self.price >= ref_obj.pricemin:  # ocena 4+ i min 50 ocen
             return False
         else:
             return True

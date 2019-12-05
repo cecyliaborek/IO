@@ -4,15 +4,17 @@ import scraper, time
 
 def StartScript(List_of_searched: object_class.ListOfSearched):
     file = open("log.txt", "a")
-    file.write("Czas rozpoczęcia wykonywania:" + time.ctime(time.time()))
+    file.write("Czas rozpoczęcia wykonywania:" + time.ctime(time.time()) + "\n")
+    file.close()
     time_start = time.time()
     Lof = scraplist(List_of_searched.ListOS)
+    file = open("log.txt", "a")
     time_scrap = time.time()
-    file.write("Czas całkowity scrapowania: " + str(round(time_scrap - time_start, 2)) + "s")
+    file.write("Czas całkowity scrapowania: " + str(round(time_scrap - time_start, 2)) + "s\n")
     FoundSets = object_class.FoundSets()
     Lof.sort_list()
     time_sort = time.time()
-    file.write("Czas sortowania: " + str(round(time_sort - time_start, 2)) + "s")
+    file.write("Czas sortowania: " + str(round(time_sort - time_start, 2)) + "s\n")
     for i in Lof.lista:
         if len(i.lista) < 3:
             limit = len(i.lista)
@@ -33,8 +35,9 @@ def StartScript(List_of_searched: object_class.ListOfSearched):
             if not item.is_found:
                 FoundSets.list.remove(lis)
     time_sets = time.time()
-    file.write("Czas tworzenia zestawów i ich sprawdzania: " + str(round(time_sets - time_start, 2)) + "s")
-    file.write("Czas całkowity wykonywania funkcji StartScript: " + str(round(time.time() - time_start, 2)) + "s")
+    file.write("Czas tworzenia zestawów i ich sprawdzania: " + str(round(time_sets - time_start, 2)) + "s\n")
+    file.write("Czas całkowity wykonywania funkcji StartScript: " + str(round(time.time() - time_start, 2)) + "s\n")
+    file.close()
     return FoundSets
 
 
@@ -46,6 +49,7 @@ def scraplist(list_of_searched):
         timeperscrap.append(time.time())
         scrap = scraper.Scraper(item.name)
         scrap.run()
+        timeperscrap.append(time.time())
         foundobjlist = object_class.Obj_list()
         for found in scrap.products_list:
             if not found["deliver_cost"] == None:
@@ -53,11 +57,11 @@ def scraplist(list_of_searched):
                                         int(found["rate"]),
                                         int(found["rate_number"]), int(item.amount), found["url"])
         foundlist.set_objlist(list_of_searched.index(item), foundobjlist)
-    timeperscrap.append(time.time())
+
     for timestamp in timeperscrap:
         if not timeperscrap.index(timestamp) == 0:
             f.write("czas wykonanie scrapu przedmiotu" + str(timeperscrap.index(timestamp)) + " wynosi: " + str(
-                round(timestart - timestamp, 2)) + "s")
+                round(timestamp - timestart, 2)) + "s\n")
         timestart = timestamp
-
+    f.close()
     return foundlist
