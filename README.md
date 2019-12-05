@@ -2,11 +2,11 @@
 
 ## Linux
 
-Wejdź do katalogu projektu i wykonaj 
+Wejdź do katalogu projektu i wykonaj: 
 ```
-pip3 -r requierments.txt
+pip3 install -r requierments.txt
 ```
-Aby włączyć serwer i aplikację wykonaj
+Aby włączyć serwer i aplikację wykonaj:
 ```
 export FLASK_APP=app.py & flask run
 ```

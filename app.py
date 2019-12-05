@@ -37,23 +37,23 @@ def get_results():
     searched_products = []
 
     product1 = SearchedObject(query["product1"], query["price-max1"], query["price-min1"],
-                              query["amount1"])
+                              int(query["amount1"]))
     searched_products.append(product1)
     if query["product2"] != "":
         product2 = SearchedObject(query["product2"], query["price-max2"], query["price-min2"],
-                                  query["amount2"])
+                                  int(query["amount2"]))
         searched_products.append(product2)
     if query["product3"] != "":
         product3 = SearchedObject(query["product3"], query["price-max3"], query["price-min3"],
-                                  query["amount3"])
+                                  int(query["amount3"]))
         searched_products.append(product3)
     if query["product4"] != "":
         product4 = SearchedObject(query["product4"], query["price-max4"], query["price-min4"],
-                                  query["amount4"])
+                                  int(query["amount4"]))
         searched_products.append(product4)
     if query["product5"] != "":
         product5 = SearchedObject(query["product5"], query["price-max5"], query["price-min5"],
-                                  query["amount5"])
+                                  int(query["amount5"]))
         searched_products.append(product5)
 
     searched_objects = ListOfSearched(searched_products)
