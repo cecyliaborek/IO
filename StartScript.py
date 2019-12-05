@@ -5,6 +5,7 @@ import scraper
 def StartScript(List_of_searched: object_class.ListOfSearched):
     Lof = scraplist(List_of_searched.ListOS)
     FoundSets = object_class.FoundSets()
+    Lof.sort_list()
     for i in Lof.lista:
         if len(i.lista) < 3:
             limit = len(i.lista)
