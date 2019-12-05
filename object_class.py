@@ -43,7 +43,7 @@ class Obj_list:  # lista obiektow danego rodzaju
     def set_reference(self, ref_obj: SearchedObject):
         self.reference = ref_obj
 
-    def create_obj(self, name, price: int, price_ship: int = 0, rate: int = 0,
+    def create_obj(self, name, price: float, price_ship: float = 0, rate: float = 0,
                    rate_num: int = 0, amount: int = 1, url: str = ''):  # funkcja do dodawania obiektów recznie
         self.lista.append(Object(name, price, price_ship, rate, rate_num, amount, url))
 
