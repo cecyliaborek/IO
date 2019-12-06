@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def display_form():
-    return render_template('query.html')
+    return render_template('Query.html')
 
 
 # def mock_result():
@@ -36,23 +36,23 @@ def get_results():
 
     searched_products = []
 
-    product1 = SearchedObject(query["product1"], query["price-max1"], query["price-min1"],
+    product1 = SearchedObject(query["product1"], float(query["price-max1"]), float(query["price-min1"]),
                               int(query["amount1"]))
     searched_products.append(product1)
     if query["product2"] != "":
-        product2 = SearchedObject(query["product2"], query["price-max2"], query["price-min2"],
+        product2 = SearchedObject(query["product2"], float(query["price-max2"]), float(query["price-min2"]),
                                   int(query["amount2"]))
         searched_products.append(product2)
     if query["product3"] != "":
-        product3 = SearchedObject(query["product3"], query["price-max3"], query["price-min3"],
+        product3 = SearchedObject(query["product3"], float(query["price-max3"]), float(query["price-min3"]),
                                   int(query["amount3"]))
         searched_products.append(product3)
     if query["product4"] != "":
-        product4 = SearchedObject(query["product4"], query["price-max4"], query["price-min4"],
+        product4 = SearchedObject(query["product4"], float(query["price-max4"]), float(query["price-min4"]),
                                   int(query["amount4"]))
         searched_products.append(product4)
     if query["product5"] != "":
-        product5 = SearchedObject(query["product5"], query["price-max5"], query["price-min5"],
+        product5 = SearchedObject(query["product5"], float(query["price-max5"]), float(query["price-min5"]),
                                   int(query["amount5"]))
         searched_products.append(product5)
 
@@ -60,4 +60,4 @@ def get_results():
 
     foundSets = StartScript.StartScript(searched_objects)
     
-    return render_template('result.html', results=foundSets.list, price_list=foundSets.price)
+    return render_template('Result.html', results=foundSets.list, price_list=foundSets.price)
