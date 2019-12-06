@@ -32,23 +32,26 @@ class Scraper:
         self.products_list = []                                             # lista wyszukanych produktow
         self.source = None                                                  # pobrany dokument html
 
+    # metoda do odpalenia scrapera
     def run(self):
         self.get_links()
         self.scrap()
 
+    # pobranie linkow do stron z produktami
     def get_links(self):
         self.get_html(self.url)
         soup = BeautifulSoup(self.source, 'lxml')
         for links in soup.find_all('a', attrs="hfref", class_='compare-link-1'):
             self.link.append('https://www.skapiec.pl' + links.get('href'))
-            break
+            break                                                           # wg zalozen bierzemy tylko pierwsza opcje
         if len(self.link) == 0:
             self.link.append(self.url)
 
-
+    # pobranie kodu zrodlowego html
     def get_html(self, url):
         self.source = requests.get(url).text
 
+    # pobranie potrzebnych danych do przeprowadzenia algorytmu
     def scrap(self):
         for links in self.link:
             self.get_html(links)
@@ -63,14 +66,17 @@ class Scraper:
                 self.scrap_if_delivery_cost(offer, product_list)
                 self.products_list.append(product_list)
 
+    # pobranie nazwy produktu
     def scrap_product_name(self, offer, product_list):
         name = offer.find('span', class_='description gtm_or_name')
         product_list['name'] = " ".join((name.text.replace('\n', '')).split())
 
+    # pobranie ceny produktu
     def scrap_product_price(self, offer, product_list):
         price = offer.find('span', class_='price gtm_or_price')
         product_list['price'] = float(price.text.replace(' ', '').replace('zł', '').replace(',', '.'))
 
+    # pobranie oceny sklepu
     def scrap_product_rate(self, offer, product_list):
         rate = offer.find('div', attrs='data-decription', class_='shop-rating gtm_stars')
         if rate is not None:
@@ -78,6 +84,7 @@ class Scraper:
         else:
             product_list['rate'] = 0
 
+    # pobranie ilosci ocen sklepu
     def scrap_product_rate_number(self, offer, product_list):
         rate_number = offer.find('span', attrs='data-label', class_='counter')
         if rate_number is not None:
@@ -85,9 +92,11 @@ class Scraper:
         else:
             product_list['rate_number'] = 0
 
+    # pobranie linku do sklepu
     def scrap_product_shop_link(self, offer, product_list):
         product_list['url'] = 'https://www.skapiec.pl' + offer.get('href')
 
+    # sprawdzenie czy dostwa jest darmowa
     def scrap_if_delivery_cost(self, offer, product_list):
         if_delivery_cost = offer.find(class_='delivery-cost')
         if if_delivery_cost.get('href') is None:
@@ -95,6 +104,7 @@ class Scraper:
         else:
             self.scrap_delivery_cost(if_delivery_cost, product_list)
 
+    # pobranie kosztu dostawy
     def scrap_delivery_cost(self, offer, product_list):
         if offer.get('href').startswith('/delivery'):
             url = 'https://www.skapiec.pl' + offer.get('href')
@@ -108,6 +118,7 @@ class Scraper:
         else:
             product_list['deliver_cost'] = None
 
+    # pobranie danych z tabeli kosztow dostawy
     def scrap_html_table(self, soup):
         product_delivery_cost = []
         for elements in soup.find_all(class_='even'):
@@ -120,6 +131,7 @@ class Scraper:
 
 
 if __name__ == "__main__":
+    #do testowania
     scrap = Scraper('Cyberpunk 2077')
     scrap.run()
     for el in scrap.products_list:
