@@ -41,7 +41,7 @@ class Scraper:
         soup = BeautifulSoup(self.source, 'lxml')
         for links in soup.find_all('a', attrs="hfref", class_='compare-link-1'):
             self.link.append('https://www.skapiec.pl' + links.get('href'))
-            #break
+            break
         if len(self.link) == 0:
             self.link.append(self.url)
 

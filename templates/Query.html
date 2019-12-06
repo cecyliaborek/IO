@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title></title>
+    <title>Query</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -34,7 +34,7 @@
 
 </head>
 
-<body>
+<body data-ajax="false">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">SKAPIEC IMPROVED</span>
     </nav>
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" name="amount1" onkeydown="return event.keyCode !== 69" value="1" step="1" class="form-control">
+                <input type="number" name="amount1" onkeydown="return event.keyCode !== 69" value="1" step="1" class="form-control" required>
             </div>
             <div data-role="rangeslider">
                 <label>Zakres cen:</label>
@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" name="amount2" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość">
+                <input type="number" name="amount2" onkeydown="return event.keyCode !== 69" class="form-control" value="1">
             </div>
             <div data-role="rangeslider">
                 <label for="price-min">Zakres cen:</label>
@@ -83,7 +83,7 @@
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" name="amount3" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość">
+                <input type="number" name="amount3" onkeydown="return event.keyCode !== 69" class="form-control" value="1">
             </div>
             <div data-role="rangeslider">
                 <label for="price-min">Zakres cen:</label>
@@ -101,7 +101,7 @@
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" name="amount4" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość">
+                <input type="number" name="amount4" onkeydown="return event.keyCode !== 69" class="form-control" value="1">
             </div>
             <div data-role="rangeslider">
                 <label for="price-min">Zakres cen:</label>
@@ -119,7 +119,7 @@
             </div>
             <div class="form-group">
                 <label>Ilość</label>
-                <input type="number" name="amount5" onkeydown="return event.keyCode !== 69" class="form-control" placeholder="Ilość" />
+                <input type="number" name="amount5" onkeydown="return event.keyCode !== 69" class="form-control" value="1">
             </div>
             <div data-role="rangeslider">
                 <label for="price-min">Zakres cen:</label>
@@ -149,5 +149,14 @@
 <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.js"></script>
 
 <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"></script>
+
+<!-- <script>
+    function validateForm() {
+        document.forms[]
+    }
+</script> -->
+<script type="text/javascript">
+    $.mobile.ignoreContentEnabled = true;
+</script>
 
 </html>
