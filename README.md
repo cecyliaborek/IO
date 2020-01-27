@@ -1,4 +1,5 @@
 # Instrukcja
+Z internetu pobierz najnowszą dystrybucję Pythona 3.x
 
 Wejdź do katalogu projektu i wykonaj: 
 ```
@@ -8,7 +9,7 @@ Aby włączyć serwer i aplikację wykonaj:
 
 (Linux)
 ```
-export FLASK_APP=app.py & flask run
+export FLASK_APP=app.py && flask run
 ```
 
 (Windows)
